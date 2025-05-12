@@ -23,7 +23,7 @@ const Comments = ({ postId }) => {
 
   const fetchMe = async () => {
     try {
-      const res = await fetch("${process.env.REACT_APP_API_URL}/me", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
