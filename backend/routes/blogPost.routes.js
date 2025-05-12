@@ -8,7 +8,7 @@ const { sendNewPostNotification } = require('../utils/email');
 
 // GET blog posts with optional title search and pagination
 router.get('/blogPosts', async (req, res) => {
-    const { title = "", page = 1, limit = 10 } = req.query;
+    const { title = "", page = 1, limit = 50 } = req.query;
     try {
         const posts = await BlogPost.find({ title: { $regex: title, $options: 'i' } })
             .skip((page - 1) * limit)
