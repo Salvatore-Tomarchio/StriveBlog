@@ -10,7 +10,7 @@ const BlogPost = () => {
 
   const fetchPost = async () => {
     try {
-      const res = await fetch(`http://localhost:3002/blogPosts/${id}`);
+      const res = await fetch(`${process.env.SERVER_URL}/blogPosts/${id}`);
       const data = await res.json();
       setPost(data);
     } catch (err) {

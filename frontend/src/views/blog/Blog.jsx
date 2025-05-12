@@ -13,7 +13,7 @@ const Blog = () => {
   const fetchAuthor = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch("http://localhost:3002/me", {
+      const res = await fetch(`${process.env.SERVER_URL}/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -25,7 +25,7 @@ const Blog = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await fetch(`http://localhost:3002/authors/${author._id}/blogPosts`);
+      const res = await fetch(`${process.env.SERVER_URL}/authors/${author._id}/blogPosts`);
       const data = await res.json();
       setPosts(data);
     } catch (err) {

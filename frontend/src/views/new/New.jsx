@@ -16,7 +16,7 @@ const NewBlogPost = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3002/me", {
+      fetch(`${process.env.SERVER_URL}/me`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -39,7 +39,7 @@ const NewBlogPost = () => {
     const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
     try {
-      const res = await fetch("http://localhost:3002/blogPosts", {
+      const res = await fetch(`${process.env.SERVER_URL}/blogPosts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

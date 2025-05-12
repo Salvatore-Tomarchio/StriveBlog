@@ -11,7 +11,7 @@ const UploadImage = ({ type, id }) => {
 
     try {
       await axios.patch(
-        `http://localhost:3002/${type}/${id}/${type === "authors" ? "avatar" : "cover"}`,
+        `${process.env.SERVER_URL}/${type}/${id}/${type === "authors" ? "avatar" : "cover"}`,
         formData,
         {
           headers: {

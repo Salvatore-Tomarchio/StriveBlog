@@ -19,7 +19,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3002/authors", formData);
+      await axios.post(`${process.env.SERVER_URL}/authors`, formData);
       alert("Registrazione completata!");
     } catch (error) {
       alert("Errore nella registrazione");
