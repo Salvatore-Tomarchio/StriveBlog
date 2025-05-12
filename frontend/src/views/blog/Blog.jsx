@@ -10,33 +10,49 @@ const Blog = () => {
   const [author, setAuthor] = useState(null);
   const [posts, setPosts] = useState([]);
 
-  const fetchAuthor = async () => {
+  // const fetchAuthor = async () => {
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     const res = await fetch(`${process.env.REACT_APP_API_URL}/me`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     const data = await res.json();
+  //     setAuthor(data);
+  //   } catch (err) {
+  //     console.error("Errore nel fetch da /me:", err);
+  //   }
+  // };
+
+  // const fetchPosts = async () => {
+  //   try {
+  //     const res = await fetch(`${process.env.REACT_APP_API_URL}/authors/${author._id}/blogPosts`);
+  //     const data = await res.json();
+  //     setPosts(data);
+  //   } catch (err) {
+  //     console.error("Errore nel fetch dei post dell'autore:", err);
+  //   }
+  // };
+
+  useEffect(() => {
+  const fetchAll = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/me`, {
+      const res = await fetch("http://localhost:3002/me", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       setAuthor(data);
+
+      const postsRes = await fetch(`http://localhost:3002/authors/${data._id}/blogPosts`);
+      const postsData = await postsRes.json();
+      setPosts(postsData);
     } catch (err) {
-      console.error("Errore nel fetch da /me:", err);
+      console.error("Errore nel fetch:", err);
     }
   };
 
-  const fetchPosts = async () => {
-    try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/authors/${author._id}/blogPosts`);
-      const data = await res.json();
-      setPosts(data);
-    } catch (err) {
-      console.error("Errore nel fetch dei post dell'autore:", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchAuthor();
-    fetchPosts();
-  }, [id]);
+  fetchAll();
+}, [id]);
 
   if (!author) return <div>Caricamento autore...</div>;
 
