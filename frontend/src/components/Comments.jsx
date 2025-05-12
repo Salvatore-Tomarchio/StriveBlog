@@ -11,7 +11,7 @@ const Comments = ({ postId }) => {
 
   const fetchComments = async () => {
     try {
-      const res = await fetch(`${process.env.SERVER_URL}/blogPosts/${postId}/comments`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/blogPosts/${postId}/comments`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -23,7 +23,7 @@ const Comments = ({ postId }) => {
 
   const fetchMe = async () => {
     try {
-      const res = await fetch("${process.env.SERVER_URL}/me", {
+      const res = await fetch("${process.env.REACT_APP_API_URL}/me", {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -37,7 +37,7 @@ const Comments = ({ postId }) => {
     e.preventDefault();
     if (!newComment.trim()) return;
     try {
-      const res = await fetch(`${process.env.SERVER_URL}/blogPosts/${postId}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/blogPosts/${postId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const Comments = ({ postId }) => {
 
   const handleDelete = async (commentId) => {
     try {
-      const res = await fetch(`${process.env.SERVER_URL}/blogPosts/${postId}/comment/${commentId}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/blogPosts/${postId}/comment/${commentId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -69,7 +69,7 @@ const Comments = ({ postId }) => {
 
   const handleEdit = async (commentId) => {
     try {
-      const res = await fetch(`${process.env.SERVER_URL}/blogPosts/${postId}/comment/${commentId}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/blogPosts/${postId}/comment/${commentId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

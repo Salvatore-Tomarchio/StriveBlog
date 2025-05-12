@@ -19,7 +19,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.SERVER_URL}/authors`, formData);
+      await axios.post(`${process.env.REACT_APP_API_URL}/authors`, formData);
       alert("Registrazione completata!");
     } catch (error) {
       alert("Errore nella registrazione");

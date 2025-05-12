@@ -8,7 +8,7 @@ const Login = ({ setToken }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.SERVER_URL}/login`, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
         email,
         password,
       });

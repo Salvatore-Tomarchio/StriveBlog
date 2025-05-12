@@ -11,7 +11,7 @@ const UploadImage = ({ type, id }) => {
 
     try {
       await axios.patch(
-        `${process.env.SERVER_URL}/${type}/${id}/${type === "authors" ? "avatar" : "cover"}`,
+        `${process.env.REACT_APP_API_URL}/${type}/${id}/${type === "authors" ? "avatar" : "cover"}`,
         formData,
         {
           headers: {

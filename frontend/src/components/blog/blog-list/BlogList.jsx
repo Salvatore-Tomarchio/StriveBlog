@@ -9,7 +9,7 @@ const BlogList = ({ searchQuery }) => {
     const fetchPosts = async () => {
       try {
         const query = searchQuery ? `?title=${encodeURIComponent(searchQuery)}` : "";
-        const response = await fetch(`${process.env.SERVER_URL}/blogPosts${query}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/blogPosts${query}`);
         const data = await response.json();
         setPosts(data);
       } catch (error) {
