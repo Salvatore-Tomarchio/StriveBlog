@@ -51,10 +51,10 @@ router.get('/auth/google/callback', passport.authenticate("google", {
       const token = jwt.sign({ id: author._id, email: author.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
   
       // 🔁 Redirigi con token
-      res.redirect(`http://localhost:3000/?token=${token}`);
+      res.redirect(`${process.env.CLIENT_URL}/?token=${token}`);
     } catch (error) {
         res.status(500).json({ error: error.message });
-      res.redirect(`http://localhost:3000/login?error=oauth`);
+      res.redirect(`${process.env.CLIENT_URL}/login?error=oauth`);
     }
   });
   

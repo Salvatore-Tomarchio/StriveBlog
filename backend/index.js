@@ -12,7 +12,7 @@ const dbName = process.env.dbName;
 
 // === Middleware globali ===
 app.use(cors({
-  origin: "http://localhost:3000", // o metti "*" in dev
+  origin: process.env.CLIENT_URL, // o metti "*" in dev
   credentials: true
 }));
 
@@ -38,5 +38,5 @@ app.use(blogRoutes);
 // === Connessione al DB ===
 mongoose.connect(process.env.MongoDB_URL + dbName)
   .then(() => app.listen(port, () =>
-    console.log(`Server attivo su http://localhost:${port}`)))
+    console.log(`Server attivo sulla porta: ${port}`)))
   .catch(err => console.error("Errore connessione MongoDB:", err));
